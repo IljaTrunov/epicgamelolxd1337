@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.IO;
 
 namespace EPICBATTLE
 {
@@ -6,9 +7,18 @@ namespace EPICBATTLE
     {
         static void Main(string[] args)
         {
-            string[] heroes = { "Mario", "Chinese woman", "Donkey", "Shrek", "Bomj", "Patrick", "Deadpool", "Garry Snail", "150kg Pudge" };
-            string[] villian = { "Kim Jong-Un", "Putin", "Hitler", "Stalin", "Jew", "Hitman", "Street cleaner", "Lenin", "Trevor from gta 5", "your mother" };
-            string[] weapon = { "gaming mouse", "wooden chain", "some random motherfucker", "super mega powers", "atom bomb", "universe explosion", "fingers", "fist", "fly", "gravity control", "your mothers phone", "No u", "Uno reverse card" };
+            string rootPath = @"C:\Users\opilane\Samples";
+            string[] heroes = GetDataFromFile(rootPath + "heroes.txt");
+            string[] villian = GetDataFromFile(rootPath + "villians.txt");
+            string[] weapon = GetDataFromFile(rootPath + "villainWeapon.txt");
+
+
+
+
+
+            //string[] heroes = { "Mario", "Chinese woman", "Donkey", "Shrek", "Bomj", "Patrick", "Deadpool", "Garry Snail", "150kg Pudge", "your dad", "bob the builder" };
+            //string[] villian = { "Kim Jong-Un", "Putin", "Hitler", "Stalin", "Jew", "Hitman", "Street cleaner", "Lenin", "Trevor from gta 5", "your mother" };
+            //string[] weapon = { "gaming mouse", "wooden chain", "some random motherfucker", "super mega powers", "atom bomb", "universe explosion", "fingers", "fist", "fly", "gravity control", "your mothers phone", "No u", "Uno reverse card","middle finger", "fuck you" };
 
             string randomHero = GetRandomcharacter(heroes);
             string randomVillian = GetRandomcharacter(villian);
@@ -16,7 +26,7 @@ namespace EPICBATTLE
             string Villianweapon = GetRandomcharacter(weapon);
             Console.WriteLine($"Your random Hero is {randomHero}");
             Console.WriteLine($"Your random Hero weapon is {Heroweapon}");
-            Console.WriteLine($"Your random Villian is {randomVillian}");
+            Console.WriteLine($"Your random Villian is {randomVillian}"     );
             Console.WriteLine($"Your random Villian weapon is {Villianweapon}");
         }
 
@@ -34,6 +44,13 @@ namespace EPICBATTLE
             int randomIndexOne = rnd.Next(0, someArray.Length);
 
             return someArray[randomIndexOne];
+
+        }
+
+        public static string[] GetDataFromFile(string Filepath)
+        {
+            string[] dataFromFile = File.ReadAllLines(Filepath);
+            return dataFromFile;
 
         }
 
